@@ -1,0 +1,199 @@
+import React, { useState, useEffect } from 'react';
+
+const PrivacyBanner = () => {
+  const [showBanner, setShowBanner] = useState(true);
+  const [showModal, setShowModal] = useState(false);
+  const [analytics, setAnalytics] = useState(true);
+  const [marketing, setMarketing] = useState(true);
+
+  // Analytics logging function
+  const logAnalyticsEvent = (eventType, data = {}) => {
+    const event = {
+      type: eventType,
+      timestamp: new Date().toISOString(),
+      ...data
+    };
+    const existing = JSON.parse(localStorage.getItem('analytics_events') || '[]');
+    existing.push(event);
+    localStorage.setItem('analytics_events', JSON.stringify(existing));
+  };
+
+  useEffect(() => {
+    const consent = localStorage.getItem('biblestory_consent');
+    if (consent) {
+      setShowBanner(false);
+    } else {
+      setShowBanner(true);
+      logAnalyticsEvent('banner_shown');
+    }
+  }, []);
+
+  const setConsent = (option) => {
+    const consent = {
+      essential: true,
+      analytics: option === 'all',
+      marketing: option === 'all'
+    };
+    localStorage.setItem('biblestory_consent', JSON.stringify(consent));
+    logAnalyticsEvent('consent_given', { option, consent });
+    setShowBanner(false);
+    setShowModal(false);
+  };
+
+  const openModal = () => {
+    logAnalyticsEvent('customize_clicked');
+    setShowModal(true);
+  };
+
+  const savePreferences = () => {
+    const consent = {
+      essential: true,
+      analytics,
+      marketing
+    };
+    localStorage.setItem('biblestory_consent', JSON.stringify(consent));
+    logAnalyticsEvent('preferences_saved', { consent });
+    setShowBanner(false);
+    setShowModal(false);
+  };
+
+  const closeModal = () => {
+    setShowModal(false);
+  };
+
+  if (!showBanner) return null;
+
+  return (
+    <>
+      <div style={{
+        position: 'fixed',
+        bottom: 0,
+        left: 0,
+        right: 0,
+        background: '#f7f7f7',
+        borderTop: '1px solid #ccc',
+        padding: '20px',
+        boxShadow: '0 -2px 5px rgba(0,0,0,0.1)',
+        zIndex: 1000,
+        fontFamily: 'Arial, sans-serif'
+      }}>
+        <div style={{
+          maxWidth: '1100px',
+          margin: '0 auto',
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          gap: '20px'
+        }}>
+          <p style={{
+            margin: 0,
+            flex: 1,
+            fontSize: '14px',
+            color: '#333'
+          }}>
+            We value your privacy and comply with Republic Act No. 10173 (Data Privacy Act of 2012) and the GDPR (General Data Protection Regulation) where applicable. BibleStory.ph uses cookies and collects personal data to provide, improve, and personalize your experience, process orders, and send you updates or promotions if you opt-in. By clicking <strong>"Accept All"</strong>, you consent to our use of cookies and personal data in accordance with our <a href="/privacy" target="_blank">Privacy Policy</a> and applicable laws. You can manage your preferences or withdraw consent at any time.
+          </p>
+          <div style={{
+            display: 'flex',
+            gap: '10px'
+          }}>
+            <button style={{
+              padding: '8px 15px',
+              fontSize: '14px',
+              border: 'none',
+              cursor: 'pointer',
+              borderRadius: '4px',
+              backgroundColor: '#4CAF50',
+              color: 'white'
+            }} onClick={() => setConsent('all')}>Accept All</button>
+            <button style={{
+              padding: '8px 15px',
+              fontSize: '14px',
+              border: 'none',
+              cursor: 'pointer',
+              borderRadius: '4px',
+              backgroundColor: '#f44336',
+              color: 'white'
+            }} onClick={() => setConsent('essential')}>Decline Non-Essential</button>
+            <button style={{
+              padding: '8px 15px',
+              fontSize: '14px',
+              border: 'none',
+              cursor: 'pointer',
+              borderRadius: '4px',
+              backgroundColor: '#2196F3',
+              color: 'white'
+            }} onClick={openModal}>Manage Preferences</button>
+          </div>
+        </div>
+      </div>
+
+      {showModal && (
+        <div style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          background: 'rgba(0,0,0,0.4)',
+          zIndex: 1001,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          padding: '20px'
+        }} onClick={closeModal}>
+          <div style={{
+            background: '#fff',
+            borderRadius: '8px',
+            padding: '20px',
+            maxWidth: '500px',
+            width: '90%',
+            boxShadow: '0 5px 15px rgba(0,0,0,0.3)',
+            maxHeight: '90vh',
+            overflowY: 'auto'
+          }} onClick={(e) => e.stopPropagation()}>
+            <h2 style={{ marginTop: 0 }}>Cookie & Privacy Preferences</h2>
+            <p style={{ fontSize: '12px', color: '#666', marginBottom: '15px' }}>
+              In compliance with RA 10173, you have the right to control how your personal data is processed. Essential cookies are always enabled for site functionality.
+            </p>
+            <label style={{ display: 'block', margin: '10px 0', fontSize: '14px' }}>
+              <input
+                type="checkbox"
+                checked={analytics}
+                onChange={(e) => setAnalytics(e.target.checked)}
+                style={{ marginRight: '10px' }}
+              />
+              Analytics & Performance Cookies (for improving our services)
+            </label>
+            <label style={{ display: 'block', margin: '10px 0', fontSize: '14px' }}>
+              <input
+                type="checkbox"
+                checked={marketing}
+                onChange={(e) => setMarketing(e.target.checked)}
+                style={{ marginRight: '10px' }}
+              />
+              Marketing / Promotional Cookies (for personalized ads and updates)
+            </label>
+            <div style={{
+              display: 'flex',
+              gap: '10px',
+              justifyContent: 'flex-end',
+              marginTop: '20px'
+            }}>
+              <button style={{
+                padding: '10px 20px',
+                border: '1px solid #cbd5e1',
+                background: '#fff',
+                color: '#0f172a',
+                borderRadius: '6px',
+                cursor: 'pointer'
+              }} onClick={savePreferences}>Save Preferences</button>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
+  );
+};
+
+export default PrivacyBanner;

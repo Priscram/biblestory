@@ -1,0 +1,88 @@
+import React from 'react';
+
+export default function DigitalProductDelivery() {
+  return (
+    <div className="page delivery-page">
+      <header className="header">
+        <div className="logo">
+          <img src="/poster.jpg" alt="BibleStory.ph Logo" className="logo-img" />
+          <h1>BibleStory.ph</h1>
+        </div>
+      </header>
+
+      <section className="section hero">
+        <div className="hero-inner">
+          <h1>Digital Product Delivery</h1>
+          <h2>Thank You for Your Purchase!</h2>
+          <p>Welcome to the BibleStory.ph Digital Downloads Center. We're thrilled that you've chosen our faith-building resources! Your digital product is now ready for instant access. Follow the simple steps below to download and enjoy your files securely.</p>
+        </div>
+      </section>
+
+      <section className="section bg-soft">
+        <div className="container">
+          <h2>📥 Access Your Digital Product</h2>
+          <p>Your purchase grants immediate access to high-quality digital files, including eBooks, audio stories, or printable materials designed to inspire and educate.</p>
+          <p><strong>Click the button below to start your download:</strong></p>
+          <div className="cta-row">
+            <button className="btn primary">Download Your Product</button>
+          </div>
+          <p>For added convenience, your files are hosted on a secure server to ensure fast and safe downloads.</p>
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="container">
+          <h2>🔒 Important Security & Usage Notes</h2>
+          <ul>
+            <li><strong>Unique Access:</strong> Your download link is personalized to your order and cannot be shared.</li>
+            <li><strong>Expiration:</strong> Links may expire after 7-14 days for security reasons—please download promptly.</li>
+            <li><strong>File Formats:</strong> If your file is in .zip format, extract it using built-in tools on your device (e.g., File Explorer on Windows or Archive Utility on Mac). For eBooks, use recommended readers like Adobe Acrobat, Apple Books, or Google Play Books.</li>
+            <li><strong>Compatibility:</strong> Ensure your device supports the file type (e.g., PDF, MP3, or EPUB). If needed, update your software for the best experience.</li>
+            <li><strong>Offline Access:</strong> Once downloaded, enjoy your content offline—perfect for family devotionals or personal study.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section className="section bg-soft">
+        <div className="container">
+          <h2>💬 Didn't Receive Your Files?</h2>
+          <p>No worries—we've got you covered! If you haven't received your download email within 5-10 minutes:</p>
+          <ol>
+            <li><strong>Check Folders:</strong> Look in your Spam, Junk, or Promotions folder.</li>
+            <li><strong>Verify Email:</strong> Double-check that you entered the correct email address during checkout.</li>
+            <li><strong>Resend Request:</strong> Contact our support team, and we'll resend your files immediately.</li>
+          </ol>
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="container">
+          <h2>📩 Need Help or Have Questions?</h2>
+          <p>Our dedicated team is here to assist with any issues, from download problems to product recommendations. We respond quickly to keep your faith journey uninterrupted.</p>
+          <ul>
+            <li><strong>📧 Email Support:</strong> support@biblestory.ph</li>
+            <li><strong>📱 Live Chat/Messenger:</strong> Available on our website or via Facebook Messenger</li>
+            <li><strong>📞 Phone:</strong> +1-XXX-XXX-XXXX (Mon-Fri, 9 AM - 5 PM EST)</li>
+            <li><strong>Response Time:</strong> We aim to reply within 24 hours, often much sooner!</li>
+          </ul>
+          <p>For common FAQs, visit our <a href="/help">Help Center</a>.</p>
+        </div>
+      </section>
+
+      <section className="section hero">
+        <div className="hero-inner">
+          <h2>🙏 Thank You for Supporting BibleStory.ph</h2>
+          <p>Your purchase directly supports our mission to create uplifting, biblically accurate resources for families, churches, and communities worldwide. May these stories deepen your faith and bring joy to your home!</p>
+          <p><em>Stay connected: Follow us on <a href="#">social media links</a> for more inspiration.</em></p>
+        </div>
+      </section>
+
+      <footer className="footer">
+        <p>&copy; 2023 BibleStory.ph. All rights reserved.</p>
+        <div className="legal-links">
+          <a href="/privacy">Privacy Policy</a> | <a href="/terms">Terms of Service</a>
+        </div>
+      </footer>
+    </div>
+  );
+}

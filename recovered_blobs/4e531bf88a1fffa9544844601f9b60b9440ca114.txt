@@ -1,0 +1,39 @@
+# Bible Story — 10 Volume Sales Page (Vite + React)
+
+This is a minimal single-page sales site built with **Vite + React**. It includes:
+- Hero section with a video canvas (triggers UI when video reaches halfway or ends)
+- CTA, Social Proofs, Product Image, Benefits, Objection Handling, Endorsements, Guarantee, Quality, Transformational Promise
+- Cash-on-Delivery order form with courier dropdown
+- Plain CSS and detailed comments aimed at junior developers
+
+## Quick Start (Local)
+1. Ensure you have Node.js installed (recommended v18+).
+2. Unzip the project and open a terminal in the project folder.
+3. Run:
+   ```bash
+   npm install
+   npm run dev
+   ```
+4. Open the displayed local URL (usually `http://localhost:5173`).
+
+## Media / Public files
+Place your media files in the `public/` folder (create it at the project root). Important file names used in the code:
+- `public/bible-story-intro.mp4` — Your promo video (or change the path in `src/App.jsx`)
+- `public/poster.jpg` — Poster image for the video
+- `public/product.jpg` — Photo of the 10-volume boxed set
+- `public/endorser1.jpg`, `public/endorser2.jpg`, `public/endorser3.jpg` — Endorser images
+
+If you don't have images or a video yet, the app will still run; replace the media later.
+
+## Build for production
+```
+npm run build
+npm run preview
+```
+
+## Developer notes
+- The video triggers the sections via `onTimeUpdate` and `onEnded` handlers in `src/App.jsx`.
+- The order form is demonstration-only: it logs order data to the console. Replace submission logic with your API when ready.
+- CSS is intentionally simple; feel free to integrate Tailwind or a component library later.
+
+Enjoy — and if you want enhancements (progress bar, analytics, or server-side ordering), tell me which feature to add next.

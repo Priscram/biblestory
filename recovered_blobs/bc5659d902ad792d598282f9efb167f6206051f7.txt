@@ -1,0 +1,98 @@
+import React, { useState, useEffect } from 'react';
+
+const ShippingTracker = () => {
+  const [orderId, setOrderId] = useState('');
+  const [order, setOrder] = useState(null);
+  const [error, setError] = useState('');
+
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const prefillOrderId = urlParams.get('orderId');
+    if (prefillOrderId) {
+      setOrderId(prefillOrderId);
+    }
+  }, []);
+
+  const handleLookup = () => {
+    const orders = JSON.parse(localStorage.getItem('orders') || '[]');
+    const foundOrder = orders.find(o => o.id === orderId);
+    if (foundOrder) {
+      setOrder(foundOrder);
+      setError('');
+    } else {
+      setOrder(null);
+      setError('Order not found. Please check your Order ID.');
+    }
+  };
+
+  const handleStatusUpdate = () => {
+    if (!order) return;
+    const statuses = ['Processing', 'Shipped', 'Out for Delivery', 'Delivered'];
+    const currentIndex = statuses.indexOf(order.status);
+    if (currentIndex < statuses.length - 1) {
+      const newStatus = statuses[currentIndex + 1];
+      const updatedOrder = {
+        ...order,
+        status: newStatus,
+        timestamps: {
+          ...order.timestamps,
+          [newStatus.toLowerCase().replace(' ', '')]: new Date().toISOString()
+        }
+      };
+      const orders = JSON.parse(localStorage.getItem('orders') || '[]');
+      const index = orders.findIndex(o => o.id === order.id);
+      orders[index] = updatedOrder;
+      localStorage.setItem('orders', JSON.stringify(orders));
+      setOrder(updatedOrder);
+    }
+  };
+
+  return (
+    <div style={{ padding: '20px', fontFamily: 'Arial, sans-serif', maxWidth: '600px', margin: '0 auto' }}>
+      <h1>Shipping Tracker</h1>
+      <div style={{ marginBottom: '20px' }}>
+        <label>
+          Enter Order ID:
+          <input
+            type="text"
+            value={orderId}
+            onChange={(e) => setOrderId(e.target.value)}
+            placeholder="e.g., ORD-1234567890"
+            style={{ padding: '10px', width: '100%', marginTop: '5px' }}
+          />
+        </label>
+        <button onClick={handleLookup} style={{ padding: '10px 20px', marginTop: '10px', background: '#155e75', color: 'white', border: 'none', cursor: 'pointer' }}>
+          Track Order
+        </button>
+      </div>
+
+      {error && <p style={{ color: 'red' }}>{error}</p>}
+
+      {order && (
+        <div style={{ border: '1px solid #ddd', padding: '20px', borderRadius: '8px' }}>
+          <h2>Order Details</h2>
+          <p><strong>Order ID:</strong> {order.id}</p>
+          <p><strong>Status:</strong> {order.status}</p>
+          <p><strong>Tracking Number:</strong> {order.trackingNumber}</p>
+          <p><strong>Courier:</strong> {order.courier}</p>
+          <p><strong>Submitted:</strong> {new Date(order.timestamps.submitted).toLocaleString()}</p>
+
+          <h3>Status Timeline</h3>
+          <ul>
+            <li>Submitted: {new Date(order.timestamps.submitted).toLocaleString()}</li>
+            {order.timestamps.processing && <li>Processing: {new Date(order.timestamps.processing).toLocaleString()}</li>}
+            {order.timestamps.shipped && <li>Shipped: {new Date(order.timestamps.shipped).toLocaleString()}</li>}
+            {order.timestamps.outfordelivery && <li>Out for Delivery: {new Date(order.timestamps.outfordelivery).toLocaleString()}</li>}
+            {order.timestamps.delivered && <li>Delivered: {new Date(order.timestamps.delivered).toLocaleString()}</li>}
+          </ul>
+
+          <button onClick={handleStatusUpdate} style={{ padding: '10px 20px', background: '#4CAF50', color: 'white', border: 'none', cursor: 'pointer' }}>
+            Simulate Status Update
+          </button>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default ShippingTracker;
