@@ -50,15 +50,24 @@ function Home() {
     privacyAgreement: false
   })
 
-  // Debug logging for video duration
+  // Debug logging for video duration and path resolution
   useEffect(() => {
      const v = videoRef.current
      if (v) {
         const onLoadedMetadata = () => {
            console.log('Video loaded. Duration:', v.duration, 'seconds')
         }
+        const onError = () => {
+           console.error('Video failed to load. Current src:', v.currentSrc)
+           console.error('BASE_URL:', import.meta.env.BASE_URL)
+           console.error('Expected path:', `${import.meta.env.BASE_URL}bible-story-presentation.mp4`)
+        }
         v.addEventListener('loadedmetadata', onLoadedMetadata)
-        return () => v.removeEventListener('loadedmetadata', onLoadedMetadata)
+        v.addEventListener('error', onError)
+        return () => {
+           v.removeEventListener('loadedmetadata', onLoadedMetadata)
+           v.removeEventListener('error', onError)
+        }
      }
   }, [])
 
@@ -241,7 +250,7 @@ function Home() {
               onEnded={handleEnded}
               poster="/bible_story_10_volumes_by_Arthur_S._Maxwell.jpg"
             >
-              <source src="/bible-story-presentation.mp4" type="video/mp4" />
+              <source src={`${import.meta.env.BASE_URL}bible-story-presentation.mp4`} type="video/mp4" />
               {/* If the browser can't play the video, show fallback text */}
               Your browser does not support the video tag. Please replace /public/bible-story-presentation.mp4 with your MP4.
             </video>

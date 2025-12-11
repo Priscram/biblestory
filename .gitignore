@@ -57,12 +57,13 @@ lerna-debug.log*
 *.xcf
 
 # 🎬 Media Files
-*.mp4
-*.mov
-*.avi
-*.mkv
-*.webm
-*.flv
+# Allow video files in public directory for GitHub Pages deployment
+!public/**/*.mp4
+!public/**/*.mov
+!public/**/*.avi
+!public/**/*.mkv
+!public/**/*.webm
+!public/**/*.flv
 *.wmv
 
 # 🎵 Audio Files
