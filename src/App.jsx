@@ -56,6 +56,11 @@ import './styles.css'
  * @returns {JSX.Element} Complete application with routes
  */
 function App() {
+  // Debug logging for GitHub Pages deployment
+  console.log("App component loaded");
+  console.log("Current location:", window.location.href);
+  console.log("Base path:", "/biblestory/");
+
   return (
     // AuthProvider wraps the entire app to provide authentication context
     <AuthProvider>
