@@ -250,7 +250,7 @@ function Home() {
               onEnded={handleEnded}
               poster="/bible_story_10_volumes_by_Arthur_S._Maxwell.jpg"
             >
-              <source src={`${import.meta.env.BASE_URL}bible-story-presentation.mp4`} type="video/mp4" />
+              <source src={import.meta.env.DEV ? "/bible-story-presentation.mp4" : `${import.meta.env.BASE_URL}bible-story-presentation.mp4`} type="video/mp4" />
               {/* If the browser can't play the video, show fallback text */}
               Your browser does not support the video tag. Please replace /public/bible-story-presentation.mp4 with your MP4.
             </video>
