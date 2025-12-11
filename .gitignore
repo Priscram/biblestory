@@ -1,0 +1,203 @@
+# 📁 .gitignore for React/Vite Project
+
+# 🔧 Development Environment
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+.env.*.local
+
+# 📦 Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# 🛠️ Build Output
+dist/
+build/
+output/
+*.local
+
+# 🧪 Testing
+coverage/
+*.lcov
+!.gitkeep
+
+# ⚡ Vite Specific
+vite.config.js.local
+vite.config.ts.local
+
+# 📝 Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# 🔒 Security
+.DS_Store
+*.pem
+*.key
+*.crt
+*.cert
+*.pfx
+*.p12
+*.jks
+
+# 🖼️ Design Assets
+*.psd
+*.ai
+*.sketch
+*.fig
+*.xcf
+
+# 🎬 Media Files
+*.mp4
+*.mov
+*.avi
+*.mkv
+*.webm
+*.flv
+*.wmv
+
+# 🎵 Audio Files
+*.mp3
+*.wav
+*.ogg
+*.m4a
+*.aac
+*.flac
+
+# 📸 Image Files (keep only what's needed in public/)
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.bmp
+*.tiff
+*.webp
+*.svg
+!public/**/*.{png,jpg,jpeg,gif,svg,webp}
+
+# 📄 Documentation
+*.pdf
+*.doc
+*.docx
+*.xls
+*.xlsx
+*.ppt
+*.pptx
+
+# 🗑️ OS Generated Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# 🔧 IDE/Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*.suo
+*.sln
+*.user
+*.userprefs
+*.cache
+*.tmp
+*.bak
+*.backup
+
+# 📦 Package Managers
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+!package.json
+
+# 🧪 Test Files
+*.spec.js
+*.test.js
+*.spec.tsx
+*.test.tsx
+*.spec.jsx
+*.test.jsx
+!src/**/*.{spec,test}.{js,jsx,ts,tsx}
+
+# 🛠️ Configuration Files
+*.config.js
+*.config.ts
+!vite.config.js
+!vite.config.ts
+
+# 📁 Directories
+tmp/
+temp/
+cache/
+.cache/
+.parcel-cache/
+.next/
+.out/
+.vscode-test/
+.nyc_output/
+
+# 🔒 Local Overrides
+*.local
+*.override
+
+# 📦 Vendor
+vendor/
+lib/
+lib-cov/
+
+# 🧩 Miscellaneous
+*.diff
+*.patch
+*.orig
+*.rej
+*.log
+*.csv
+*.dmg
+*.pkg
+*.toast
+*.part
+*.crdownload
+*.download
+*.iso
+*.dmg
+*.zip
+*.rar
+*.7z
+*.tar
+*.gz
+*.bz2
+*.xz
+
+# 📝 Notes
+# - Keep package.json and package-lock.json for dependency management
+# - Keep public assets that are part of the build
+# - Ignore all environment files except .env.example if it exists
+# - Ignore build outputs and cache directories
+# - Ignore IDE/editor specific files and directories
+# - Ignore system files and temporary files
+
+# 🎯 React/Vite Specific Recommendations
+# Keep these files:
+# - src/ (your source code)
+# - public/ (static assets)
+# - package.json
+# - vite.config.js/ts
+# - README.md
+# - .gitignore
+# - LICENSE (if applicable)
+
+# 🚀 Production Note:
+# Remember to add any sensitive configuration to .env files
+# and include .env.example with default values for other developers

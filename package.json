@@ -10,15 +10,25 @@
     "start": "npm run dev"
   },
   "dependencies": {
+    "country-flag-icons": "^1.5.7",
+    "country-state-city": "^3.2.1",
+    "leaflet": "^1.9.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "country-flag-icons": "^1.5.7"
+    "react-leaflet": "^4.2.1",
+    "react-phone-number-input": "^3.4.14",
+    "react-router-dom": "^7.10.1"
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^4.0.0",
     "vite": "^4.3.9"
   },
-  "keywords": ["bible", "stories", "sales", "page"],
+  "keywords": [
+    "bible",
+    "stories",
+    "sales",
+    "page"
+  ],
   "author": "",
   "license": "ISC"
 }
