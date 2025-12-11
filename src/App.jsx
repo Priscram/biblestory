@@ -60,7 +60,8 @@ function App() {
     // AuthProvider wraps the entire app to provide authentication context
     <AuthProvider>
       {/* React Router setup for client-side navigation */}
-      <Router>
+      {/* Note: basename must match the base path in vite.config.js for GitHub Pages */}
+      <Router basename="/biblestory/">
         <Routes>
           {/* Public Routes - Accessible to all users */}
           <Route path="/" element={<Home />} />
