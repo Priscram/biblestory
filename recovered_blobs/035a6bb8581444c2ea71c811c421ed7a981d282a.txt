@@ -1,1 +1,0 @@
-Place your mp4 video as 'bible-story-intro.mp4' in this folder. You can also replace poster.jpg and product.jpg with your artwork.
