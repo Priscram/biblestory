@@ -66,10 +66,8 @@ lerna-debug.log*
 !public/**/*.flv
 *.wmv
 
-# Also allow these formats when placed under public/ (GitHub Pages needs them committed)
+# Also allow WMV when placed under public/ (GitHub Pages needs them committed)
 !public/**/*.wmv
-!public/**/*.ogg
-!public/**/*.ogv
 
 # 🎵 Audio Files
 *.mp3
