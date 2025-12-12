@@ -66,10 +66,17 @@ lerna-debug.log*
 !public/**/*.flv
 *.wmv
 
+# Also allow these formats when placed under public/ (GitHub Pages needs them committed)
+!public/**/*.wmv
+!public/**/*.ogg
+!public/**/*.ogv
+
 # 🎵 Audio Files
 *.mp3
 *.wav
 *.ogg
+!public/**/*.ogg
+!public/**/*.ogv
 *.m4a
 *.aac
 *.flac
@@ -83,7 +90,15 @@ lerna-debug.log*
 *.tiff
 *.webp
 *.svg
-!public/**/*.{png,jpg,jpeg,gif,svg,webp}
+
+# gitignore does NOT support brace expansion like `*.{png,jpg}`.
+# Explicitly allow public/ images so they can be committed and served via GitHub Pages.
+!public/**/*.png
+!public/**/*.jpg
+!public/**/*.jpeg
+!public/**/*.gif
+!public/**/*.svg
+!public/**/*.webp
 
 # 📄 Documentation
 *.pdf
