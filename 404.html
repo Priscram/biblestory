@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <base href="/biblestory/" />
+    <link rel="icon" type="image/png" href="/biblestory/The-Bible-Story-Book-set.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Page Not Found - Bible Story Sales Page</title>
+    <script type="text/javascript">
+      // Redirect to index.html for SPA routing
+      var path = window.location.pathname;
+      if (path !== '/biblestory/' && !path.includes('.html')) {
+        window.location.href = '/biblestory/';
+      }
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module">
+      // This will be replaced by the actual app bundle
+      import('/biblestory/assets/index-XXXXXXXX.js').catch(() => {
+        window.location.href = '/biblestory/';
+      });
+    </script>
+  </body>
+</html>
